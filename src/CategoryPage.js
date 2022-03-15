@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Animated, Button } from 'react-native';
+import { ScrollView, StyleSheet, Text, View, Animated, Button } from 'react-native';
 import Curtain from './Curtain';
 
 
@@ -6,15 +6,18 @@ export default function CurtainPage({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-                <Curtain />
-                <Curtain />
-                <Curtain />
-            </View>
-            <Button
-                onPress={() => { navigation.navigate('RevealedCategoryPage'); }}
-                title="RevealedCategoryPage"
-            />
+            <ScrollView >
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+                    <Curtain />
+                    <Curtain />
+                    <Curtain />
+
+                </View>
+                <Button
+                    onPress={() => { navigation.navigate('RevealedCategoryPage'); }}
+                    title="RevealedCategoryPage"
+                />
+            </ScrollView>
         </View>
     )
 }
