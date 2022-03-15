@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, Text, View, Animated, Button } from 'react-native';
-import Curtain from './Curtain';
+import Curtain from '../components/Curtain/';
 
 
 export default function CurtainPage({ navigation }) {
