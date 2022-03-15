@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { imageHeight, imageWidth, cardPadding } from '../../config'
+import { imageHeight, imageWidth, cardPadding } from '../Carousel/config'
 const { width: screenWidth } = Dimensions.get('window')
 
 const styles = StyleSheet.create({

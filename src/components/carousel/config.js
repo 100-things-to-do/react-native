@@ -1,5 +1,6 @@
 import { Dimensions } from 'react-native'
 
+// TODO: this config is related with Carousel and Slide component, get rid of it from Carousel.
 const { width: screenWidth } = Dimensions.get('window')
 
 export const cardPerSlide = 2

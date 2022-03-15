@@ -2,7 +2,7 @@ import React, { Component, useState, useRef } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import styles from './style'
 import { cardPerSlide } from './config'
-import CarouselSlide from './components/Slide'
+import CarouselSlide from '../Slide'
 import movies from './data'
 
 const { width: screenWidth } = Dimensions.get('window')
