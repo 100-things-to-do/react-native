@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
   },
   scrollViewContainerStyle: {
     justifyContent: 'center',
-    height: 100
+    height: null
   },
   cardCountContainer: {
     paddingBottom: 20
