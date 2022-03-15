@@ -38,13 +38,11 @@ export default function HomePage({ navigation }) {
                 <View style={styles.midImageContainer}>
                     <Image source={{ uri: images[0] }} style={styles.topImage} />
                 </View>
-
-
                 <Text>
                     Popular Challanges
                 </Text>
-
             </View>
+
             <View style={styles.carouselContainer}>
                 <Carousel />
             </View>
@@ -55,8 +53,10 @@ export default function HomePage({ navigation }) {
 
 const styles = StyleSheet.create({
     pageContainer: {
-        flex: 0.7,
-        margin: '10%',
+        flex: 0.6,
+        marginTop: '10%',
+        marginLeft: '10%',
+        marginRight: '10%',
         backgroundColor: 'blue',
     },
     topImageContainer: {

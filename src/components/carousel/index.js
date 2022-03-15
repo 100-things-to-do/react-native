@@ -116,10 +116,6 @@ export default function CustomCarousel() {
           return <CarouselSlide key={i} cards={movies.slice(startPosition, endPosition)} />
         })}
       </ScrollView>
-      <View style={styles.cardCountContainer}>
-        <Text style={styles.countText}>Total Slides    : {totalSlide}</Text>
-        <Text style={styles.countText}>Current Slide : {currentSlide}</Text>
-      </View>
     </View>
   )
 
