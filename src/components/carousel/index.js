@@ -1,4 +1,4 @@
-import React, { Component, useState, useRef } from 'react'
+import React, { Component, useState, useRef, useEffect } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import styles from './style'
 import { cardPerSlide } from './config'
@@ -14,6 +14,8 @@ export default function CustomCarousel() {
   const [isNext, setIsNext] = useState(false);
   const [isPrev, setIsPrev] = useState(false);
   const stepCarousel = useRef();
+  const [refVisible, setRefVisible] = useState(false);
+
 
   // function will find out total no of slide and set to state
   const setTotalSlides = (contentWidth) => {
@@ -31,6 +33,7 @@ export default function CustomCarousel() {
   // function will identify current slide visible on screen
   // Also maintaining current slide on carousel swipe.
   const handleScrollEnd = (e) => {
+    console.log('handleScrollEnd')
     if (!e) {
       return
     }
@@ -38,11 +41,11 @@ export default function CustomCarousel() {
     if (nativeEvent && nativeEvent.contentOffset) {
       let currentSlide = 1
       if (nativeEvent.contentOffset.x === 0) {
-        setCurrentSlide(currentSlide)
+        //setCurrentSlide(currentSlide % 5)
       } else {
         const approxCurrentSlide = nativeEvent.contentOffset.x / screenWidth
         currentSlide = parseInt(Math.ceil(approxCurrentSlide.toFixed(2)) + 1)
-        setCurrentSlide(currentSlide)
+        //setCurrentSlide(currentSlide)
       }
       calculateNextPrev(totalSlide, currentSlide)
     }
@@ -50,18 +53,14 @@ export default function CustomCarousel() {
 
   const goToNext = () => {
     const scrollPoint = currentSlide * screenWidth
-    stepCarousel.scrollTo({ x: scrollPoint, y: 0, animated: true })
-    // following condition is for android only because in android onMomentumScrollEnd doesn't
-    // call when we scrollContent with scroll view reference.
-    if (Platform.OS === 'android') {
-      handleScrollEnd({ nativeEvent: { contentOffset: { y: 0, x: scrollPoint } } })
-    }
+    stepCarousel.current.scrollTo({ x: scrollPoint, y: 0, animated: true })
+    setCurrentSlide(prevCurrentSlide => (prevCurrentSlide + 1) % 5);
   }
 
   const goToPrev = () => {
     const pageToGo = currentSlide - 2
     const scrollPoint = (pageToGo) * screenWidth
-    stepCarousel.scrollTo({ x: scrollPoint, y: 0, animated: true })
+    stepCarousel.current.scrollTo({ x: scrollPoint, y: 0, animated: true })
     // following condition is for android only because in android onMomentumScrollEnd doesn't
     // call when we scrollContent with scrollview reference.
     if (Platform.OS === 'android') {
@@ -69,6 +68,15 @@ export default function CustomCarousel() {
     }
   }
 
+
+  useEffect(() => {
+    console.log("currentSlide", currentSlide);
+
+    const id = setInterval(() => goToNext(), 2000)
+    return function () {
+      clearInterval(id);
+    }
+  }, [currentSlide])
 
   const calculateNextPrev = (totalPage, currentPage) => {
     if (totalPage > currentPage) {
@@ -94,11 +102,12 @@ export default function CustomCarousel() {
         contentContainerStyle={styles.scrollViewContainerStyle}
         horizontal
         pagingEnabled
-        showsHorizontalScrollIndicator={false}
+        showsHorizontalScrollIndicator={true}
         decelerationRate={0}
         snapToAlignment={'center'}
         onContentSizeChange={setTotalSlides}
         onMomentumScrollEnd={handleScrollEnd}
+        automaticallyAdjustContentInsets={false}
       >
         {[...Array(noOfSlides)].map((e, i) => {
           const startIndex = i + 1
@@ -113,4 +122,5 @@ export default function CustomCarousel() {
       </View>
     </View>
   )
+
 }
