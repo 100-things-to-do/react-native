@@ -3,17 +3,13 @@ import { imageHeight } from './config'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignContent: 'center',
+    flex: 2,
+
     backgroundColor: '#FFFFFF',
   },
   scrollViewContainerStyle: {
-    alignContent: 'center',
     justifyContent: 'center',
-    alignItems: 'center',
-    height: 50
+    height: 100
   },
   cardCountContainer: {
     paddingBottom: 20

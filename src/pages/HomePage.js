@@ -26,46 +26,48 @@ function Achievements() {
 
 export default function HomePage({ navigation }) {
     return (
-        <View style={styles.pageContainer}>
-            <View style={styles.topImageContainer}>
-                <Image source={{ uri: images[0] }} style={styles.topImage} />
+        <View style={{ flex: 1 }}>
+            <View style={styles.pageContainer}>
+                <View style={styles.topImageContainer}>
+                    <Image source={{ uri: images[0] }} style={styles.topImage} />
+                </View>
+                <Text style={styles.centeredText}>
+                    Challange yourself with {"\n"} Activify
+                </Text>
+
+                <View style={styles.midImageContainer}>
+                    <Image source={{ uri: images[0] }} style={styles.topImage} />
+                </View>
+
+
+                <Text>
+                    Popular Challanges
+                </Text>
+
             </View>
-            <Text style={styles.centeredText}>
-                Challange yourself with {"\n"} Activify
-            </Text>
-
-            <View style={styles.midImageContainer}>
-                <Image source={{ uri: images[0] }} style={styles.topImage} />
-            </View>
-
-
-            <Text>
-                Popular Challanges
-            </Text>
             <View style={styles.carouselContainer}>
                 <Carousel />
             </View>
         </View>
-
 
     )
 }
 
 const styles = StyleSheet.create({
     pageContainer: {
-        flex: 1,
+        flex: 0.7,
         margin: '10%',
         backgroundColor: 'blue',
     },
     topImageContainer: {
-        flex: 0.4,
+        flex: 0.6,
     },
     topImage: {
         width: '100%',
         height: '100%',
     },
     midImageContainer: {
-        flex: 0.2,
+        flex: 0.4,
         marginRight: '5%',
         marginLeft: '5%',
     },
@@ -73,6 +75,6 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     carouselContainer: {
-        flex: 0.4,
+        flex: 0.3,
     }
 });
