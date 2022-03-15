@@ -6,7 +6,11 @@ export default function CarouselSlide({ cards }) {
   return (
     <View style={styles.slide}>
       {cards.map((card, index) => {
-        return <Image source={{ uri: card.url }} style={styles.imageCard} key={index} />
+        if (index % 2 == 0) {
+          return <Image source={{ uri: card.url }} style={styles.leftImageCard} key={index} />
+        } else {
+          return <Image source={{ uri: card.url }} style={styles.rightImageCard} key={index} />
+        }
       })}
     </View>
   )

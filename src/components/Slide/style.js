@@ -7,13 +7,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     width: screenWidth,
   },
-  imageCard: {
+  leftImageCard: {
     flex: 0.5,
     width: null,
     height: null,
     resizeMode: 'stretch',
-    marginRight: '5%',
-    marginLeft: '5%',
+
+    marginLeft: '10%',
+    marginRight: '2.5%'
+  },
+  rightImageCard: {
+    flex: 0.5,
+    width: null,
+    height: null,
+    resizeMode: 'stretch',
+    marginRight: '10%',
+    marginLeft: '2.5%'
   }
 });
 
