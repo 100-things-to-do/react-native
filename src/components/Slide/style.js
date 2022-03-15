@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { imageHeight, imageWidth, cardPadding } from '../Carousel/config'
 const { width: screenWidth } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
@@ -12,7 +11,6 @@ const styles = StyleSheet.create({
     width: null,
     height: null,
     resizeMode: 'stretch',
-
     marginLeft: '10%',
     marginRight: '2.5%'
   },

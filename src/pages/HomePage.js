@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View, Animated, Button, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import Carousel from '../components/Carousel'
 const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 100;
 const images = [
     "https://reactjs.org/logo-og.png",
     "https://reactjs.org/logo-og.png",
@@ -9,20 +8,7 @@ const images = [
 ];
 
 
-function Achievements() {
-    function getAchievements() {
-        return [{
-            achievementName: 'achievement',
-            isAchieved: true,
-            achievementImg: 'https://reactjs.org/logo-og.png'
-        }]
-    }
-    return (
-        <View>
-            <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri: image }} />
-        </View>
-    )
-}
+
 
 export default function HomePage({ navigation }) {
     return (

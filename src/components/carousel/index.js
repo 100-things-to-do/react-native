@@ -1,14 +1,14 @@
 import React, { Component, useState, useRef, useEffect } from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Dimensions, Platform } from 'react-native'
 import styles from './style'
-import { cardPerSlide } from './config'
 import CarouselSlide from '../Slide'
 import movies from './data'
 
 const { width: screenWidth } = Dimensions.get('window')
+const CARD_PER_SLIDE = 2;
 
 export default function CustomCarousel() {
-  const noOfSlides = Math.ceil(movies.length / cardPerSlide)
+  const noOfSlides = Math.ceil(movies.length / CARD_PER_SLIDE)
   const [totalSlide, setTotalSlide] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isNext, setIsNext] = useState(false);
@@ -99,15 +99,12 @@ export default function CustomCarousel() {
 
       <ScrollView
         ref={stepCarousel}
-        contentContainerStyle={styles.scrollViewContainerStyle}
         horizontal
-        pagingEnabled
         showsHorizontalScrollIndicator={true}
         decelerationRate={0}
         snapToAlignment={'center'}
         onContentSizeChange={setTotalSlides}
         onMomentumScrollEnd={handleScrollEnd}
-        automaticallyAdjustContentInsets={false}
       >
         {[...Array(noOfSlides)].map((e, i) => {
           const startIndex = i + 1
