@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Animated, Button, Image, Dimensions } from 'react-native';
-import CustomCarousel from './carousel/'
+import CustomCarousel from '../components/carousel'
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 100;
 const images = [

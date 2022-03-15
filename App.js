@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomePage from './src/HomePage';
-import CategoryPage from './src/CategoryPage';
-import ProfilePage from './src/ProfilePage';
-import CategoriesPage from './src/CategoriesPage';
-import RevealedCategoryPage from './src/RevealedCategoryPage';
+import HomePage from './src/pages/HomePage';
+import CategoryPage from './src/pages/CategoryPage';
+import ProfilePage from './src/pages/ProfilePage';
+import CategoriesPage from './src/pages/CategoriesPage';
+import RevealedCategoryPage from './src/pages/RevealedCategoryPage';
 const Stack = createNativeStackNavigator();
 
 

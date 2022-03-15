@@ -5,7 +5,7 @@ const TOTAL_WIDTH = 150;
 const INIT_CURTAIN_WIDTH = 100;
 const CURTAIN_OPEN_LENGTH = 80;
 const CURTAIN_HEIGHT = 100;
-const CURTAIN_JPEG = require('../assets/curtain.jpeg')
+const CURTAIN_JPEG = require('../../assets/curtain.jpeg')
 const FRAME_MARGIN = 10;
 
 export default function Curtain({ imagePath, text }) {
