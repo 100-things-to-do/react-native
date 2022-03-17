@@ -8,7 +8,7 @@ import AdButton from './adButton';
 const CONTAINER_BG_COLOR = 'black';
 
 
-export default function RevealedCategoryPage() {
+export default function RevealedCategory() {
     return (
         <View style={styles.mainContainer}>
             <CategoryTitle containerStyle={styles.categoryTitleContainer} />

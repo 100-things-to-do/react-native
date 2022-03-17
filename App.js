@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomePage from './src/pages/HomePage';
-import CategoryPage from './src/pages/CategoryPage';
-import ProfilePage from './src/pages/ProfilePage';
-import CategoriesPage from './src/pages/CategoriesPage';
-import RevealedCategoryPage from './src/pages/RevealedCategoryPage';
+import Home from './src/pages/Home';
+import Category from './src/pages/Category';
+import Profile from './src/pages/Profile';
+import Categories from './src/pages/Categories';
+import RevealedCategory from './src/pages/RevealedCategory';
 const Stack = createNativeStackNavigator();
 
 
@@ -18,25 +18,30 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomePage"
-          component={HomePage}
-        />
-        <Stack.Screen
-          name="ProfilePage"
-          component={ProfilePage}
-        />
-        <Stack.Screen
           name="CategoryPage"
-          component={CategoryPage}
-        />
-        <Stack.Screen
-          name="CategoriesPage"
-          component={CategoriesPage}
+          component={Category}
         />
         <Stack.Screen
           name="RevealedCategoryPage"
-          component={RevealedCategoryPage}
+          component={RevealedCategory}
         />
+        <Stack.Screen
+          name="CategoriesPage"
+          component={Categories}
+        />
+
+
+        <Stack.Screen
+          name="HomePage"
+          component={Home}
+        />
+        <Stack.Screen
+          name="ProfilePage"
+          component={Profile}
+        />
+
+
+
       </Stack.Navigator>
     </NavigationContainer>
 

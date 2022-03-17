@@ -22,7 +22,7 @@ const renderSquares = ({ item, index }) => {
         </TouchableHighlight>
     );
 };
-export default function CategoryPage() {
+export default function Category() {
 
 
     return (

@@ -10,7 +10,7 @@ const images = [
 
 
 
-export default function HomePage({ navigation }) {
+export default function Home({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.pageContainer}>

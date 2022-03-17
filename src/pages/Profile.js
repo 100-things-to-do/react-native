@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Animated, Button } from 'react-native';
 
 
-export default function ProfilePage({ navigation }) {
+export default function Profile({ navigation }) {
 
 
     return (

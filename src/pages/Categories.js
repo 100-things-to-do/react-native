@@ -39,7 +39,7 @@ const renderCategory = ({ item: category, index }) => {
         </View>
     );
 };
-export default function CategoriesPage() {
+export default function Categories() {
     return (
         <View style={styles.mainContainer}>
             <FlatList style={styles.mainFlatListContainer}
