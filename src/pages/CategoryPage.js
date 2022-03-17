@@ -8,14 +8,7 @@ const numColumns = 5;
 const BLACK = 'black';
 const FEELING_LUCKY_BUTTON_COLOR = '#685269'
 const FEELING_LUCKY_BUTTON_BORDER_COLOR = '#ED44F5'
-
-const data = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-    1, 2, 3, 4, 5, 6, 7, 8, 9,
-];
+const { data } = require("../mock/categoryData");
 
 
 
