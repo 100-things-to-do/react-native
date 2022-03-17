@@ -1,11 +1,22 @@
 import React from "react";
-import { StyleSheet, View, Text, FlatList } from "react-native";
-import style from "../components/Curtain/style";
+import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-native";
 
-
+const MARGIN = Dimensions.get('window').width / 20
+const SQUARE_SIDE_LENGTH = 8 * Dimensions.get('window').width / 20
 
 const data = [
-    { key: 'A' }, { key: 'B' }, { key: 'C' }
+    {
+        name: 'Cars',
+        letters: ['A', 'B', 'C']
+    },
+    {
+        name: 'Homes',
+        letters: ['D', 'E', 'F']
+    },
+    {
+        name: 'Guns',
+        letters: ['H', 'I', 'J']
+    }
 ];
 
 const formatData = (data, numColumns) => {
@@ -24,29 +35,31 @@ const numColumns = 2;
 
 export default function CategoriesPage() {
     const renderSquares = ({ item, index }) => {
-        if (item.empty === true) {
-            return <View style={[styles.item, styles.itemInvisible]} />;
-        }
         return (
-            <View style={styles.square}>
-                <Text style={styles.text}>{item.key}</Text>
+            <View style={styles.categoryContainer}>
+                <Text>{item.name}</Text>
+                <FlatList
+                    data={item.letters}
+                    renderItem={({ item, index }) => {
+                        return (
+                            <View style={styles.square}>
+                                <Text style={styles.text}>{item}</Text>
+                            </View>
+                        )
+                    }}
+                    numColumns={numColumns}
+                />
             </View>
         );
     };
 
     return (
-        <View style={styles.container}>
-            <FlatList
-                data={formatData(data, numColumns)}
-                renderItem={renderSquares}
-                numColumns={numColumns}
-            />
-            <FlatList
-                data={formatData(data, numColumns)}
-                renderItem={renderSquares}
-                numColumns={numColumns}
-            />
-        </View>
+        <FlatList style={styles.container}
+            data={data}
+            renderItem={renderSquares}
+        />
+
+
     );
 }
 
@@ -61,16 +74,18 @@ const styles = StyleSheet.create({
     square: {
         borderColor: "#fff",
         borderWidth: 1,
-        width: '45%',
-        margin: '2.5%', // 5 + 5 = 10
-        height: '100%',
-        justifyContent: "center",
+        width: SQUARE_SIDE_LENGTH,
+        height: SQUARE_SIDE_LENGTH,
+        margin: MARGIN,
+        justifyContent: 'center',
         alignItems: "center",
-
     },
     text: {
         color: "#fff",
         fontSize: 18,
         fontWeight: "bold",
     },
+    categoryContainer: {
+        marginBottom: '5%',
+    }
 });
