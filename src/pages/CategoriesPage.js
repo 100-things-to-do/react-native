@@ -1,8 +1,12 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-native";
 
-const MARGIN = Dimensions.get('window').width / 20
+const SQUARE_MARGIN = Dimensions.get('window').width / 20
 const SQUARE_SIDE_LENGTH = 8 * Dimensions.get('window').width / 20
+const SQUARE_BORDER_COLOR = "#fff"
+const numColumns = 2;
+const BACKGROUND_COLOR = "#7CA1B4"
+const CATEGORY_MARGIN_BOTTOM = '5%'
 
 const data = [
     {
@@ -19,39 +23,28 @@ const data = [
     }
 ];
 
-const formatData = (data, numColumns) => {
-    const numberOfFullRows = Math.floor(data.length / numColumns);
 
-    let numberOfElementsLastRow = data.length - (numberOfFullRows * numColumns);
-    while (numberOfElementsLastRow !== numColumns && numberOfElementsLastRow !== 0) {
-        data.push({ key: `blank-${numberOfElementsLastRow}`, empty: false });
-        numberOfElementsLastRow++;
-    }
 
-    return data;
+const renderSquares = ({ item, index }) => {
+    return (
+        <View style={styles.categoryContainer}>
+            <Text>{item.name}</Text>
+            <FlatList
+                data={item.letters}
+                renderItem={({ item, index }) => {
+                    return (
+                        <View style={styles.square}>
+                            <Text style={styles.text}>{item}</Text>
+                        </View>
+                    )
+                }}
+                numColumns={numColumns}
+            />
+        </View>
+    );
 };
-const numColumns = 2;
-
-
 export default function CategoriesPage() {
-    const renderSquares = ({ item, index }) => {
-        return (
-            <View style={styles.categoryContainer}>
-                <Text>{item.name}</Text>
-                <FlatList
-                    data={item.letters}
-                    renderItem={({ item, index }) => {
-                        return (
-                            <View style={styles.square}>
-                                <Text style={styles.text}>{item}</Text>
-                            </View>
-                        )
-                    }}
-                    numColumns={numColumns}
-                />
-            </View>
-        );
-    };
+
 
     return (
         <FlatList style={styles.container}
@@ -65,27 +58,23 @@ export default function CategoriesPage() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: "#7CA1B4",
-    },
-    flat: {
-        backgroundColor: 'red'
+        backgroundColor: BACKGROUND_COLOR,
     },
     square: {
-        borderColor: "#fff",
+        borderColor: SQUARE_BORDER_COLOR,
         borderWidth: 1,
         width: SQUARE_SIDE_LENGTH,
         height: SQUARE_SIDE_LENGTH,
-        margin: MARGIN,
+        margin: SQUARE_MARGIN,
         justifyContent: 'center',
         alignItems: "center",
     },
     text: {
-        color: "#fff",
+        color: SQUARE_BORDER_COLOR,
         fontSize: 18,
         fontWeight: "bold",
     },
     categoryContainer: {
-        marginBottom: '5%',
+        marginBottom: CATEGORY_MARGIN_BOTTOM,
     }
 });
