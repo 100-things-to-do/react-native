@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
     height: null,
     resizeMode: 'stretch',
     marginLeft: '10%',
-    marginRight: '2.5%'
+    marginRight: '2.5%',
+    marginBottom: '5%'
   },
   rightImageCard: {
     flex: 0.5,
@@ -20,7 +21,8 @@ const styles = StyleSheet.create({
     height: null,
     resizeMode: 'stretch',
     marginRight: '10%',
-    marginLeft: '2.5%'
+    marginLeft: '2.5%',
+    marginBottom: '5%'
   }
 });
 
