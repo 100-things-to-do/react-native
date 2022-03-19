@@ -2,10 +2,12 @@ import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-
 const SPLIT_BORDER_COLOR = 'black'
 
 
-export default function Border() {
+export default function Border({ noMargin, color }) {
+
+    console.log(styles.splitBorder)
     return (
-        <View style={styles.splitBorderContainer}>
-            <View style={styles.splitBorder}>
+        <View style={noMargin ? null : styles.splitBorderContainer}>
+            <View style={color ? { ...styles.splitBorder, borderColor: color } : styles.splitBorder}>
             </View>
         </View>
     )
