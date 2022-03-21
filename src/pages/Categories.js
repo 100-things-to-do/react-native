@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-native";
 import Border from '../components/Border';
+import { globalStyles } from '../styles/global'
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 25
 const SQUARE_SIDE_LENGTH = 8 * Dimensions.get('window').width / 22
@@ -8,6 +9,7 @@ const SQUARE_BORDER_COLOR = "red"
 const ACTIVITY_TEXT_COLOR = 'white'
 const numColumns = 2;
 const BACKGROUND_COLOR = "#7CA1B4"
+
 
 const { data } = require('../mock/categoriesData')
 
@@ -41,7 +43,7 @@ const renderCategory = ({ item: category, index }) => {
 };
 export default function Categories() {
     return (
-        <View style={styles.mainContainer}>
+        <View style={globalStyles.mainContainer}>
             <FlatList style={styles.mainFlatListContainer}
                 data={data}
                 renderItem={renderCategory}
@@ -51,11 +53,7 @@ export default function Categories() {
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        backgroundColor: BACKGROUND_COLOR,
-    },
     mainFlatListContainer: {
-
         margin: '5%'
     },
     square: {

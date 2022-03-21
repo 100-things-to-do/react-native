@@ -3,9 +3,10 @@ import Carousel from '../../components/Carousel'
 import HomeHeader from './HomeHeader'
 import PopularChallenges from './PopularChallenges'
 import MostFamousCategory from './MostFamousCategory'
+import Border from '../../components/Border'
+import { globalStyles } from '../../styles/global'
 const BannerWidth = Dimensions.get('window').width;
 
-import Border from '../../components/Border'
 
 
 
@@ -19,7 +20,7 @@ import Border from '../../components/Border'
 
 export default function Home({ navigation }) {
     return (
-        <View style={{ flex: 1, backgroundColor: '#1C658C' }}>
+        <View style={globalStyles.mainContainer}>
             <View style={styles.pageContainer}>
                 <HomeHeader containerStyle={styles.homeHeaderContainer} />
                 <Border noMargin color={'white'} />

@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import HomeStack from './HomeStack';
 import ProfileStack from './ProfileStack';
 import CategoriesStack from './CategoriesStack'
+const { HEADER_BG_COLOR, HEADER_TINT_COLOR, HEADER_HEIGHT } = require('../styles/global')
 
 // drawer navigation options
 const RootDrawerNavigator = createDrawerNavigator({

@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHighlight } from "react-native";
+import { globalStyles } from '../styles/global'
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -26,7 +27,7 @@ export default function Category() {
 
 
     return (
-        <View style={styles.mainContainer}>
+        <View style={globalStyles.mainContainer}>
             <View style={styles.categorySummaryContainer}>
                 <Text style={styles.categoryTitleText}>
                     Couple Home
@@ -55,9 +56,6 @@ export default function Category() {
 }
 
 const styles = StyleSheet.create({
-    mainContainer: {
-        flex: 1,
-    },
     flatListContainer: {
         flex: 0.4,
         margin: '5%'
