@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-native";
-import Border from '../components/Border';
-import { globalStyles } from '../styles/global'
+import Border from '../../components/Border';
+import { globalStyles } from '../../styles/global'
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 25
 const SQUARE_SIDE_LENGTH = 8 * Dimensions.get('window').width / 22
@@ -9,9 +9,11 @@ const SQUARE_BORDER_COLOR = "red"
 const ACTIVITY_TEXT_COLOR = 'white'
 const numColumns = 2;
 const BACKGROUND_COLOR = "#7CA1B4"
+import categoryAPI from "../../apis/CategoryAPI";
+import useStable from "react-native-web/dist/modules/useStable";
 
 
-const { data } = require('../mock/categoriesData')
+const { data } = require('../../mock/categoriesData')
 
 
 
@@ -42,10 +44,23 @@ const renderCategory = ({ item: category, index }) => {
     );
 };
 export default function Categories() {
+    const [categories, setCategories] = useState([]);
+    let topicId = '62712c20530b887f5b85ae29'
+
+    const getCategoriesCb = (resultBoolean, categoriesResult) => {
+        if (resultBoolean) {
+            setCategories(categoriesResult);
+        }
+    }
+
+    useEffect(() => {
+        categoryAPI.getCategories(topicId, getCategoriesCb)
+    }, [])
+
     return (
         <View style={globalStyles.mainContainer}>
             <FlatList style={styles.mainFlatListContainer}
-                data={data}
+                data={categories}
                 renderItem={renderCategory}
             />
         </View>

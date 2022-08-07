@@ -31,7 +31,7 @@ export default function CustomCarousel() {
 
 
   // function will identify current slide visible on screen
-  // Also maintaining current slide on carousel swipe.
+  // Also maintaining current slide on Carousel swipe.
   const handleScrollEnd = (e) => {
     console.log('handleScrollEnd')
     if (!e) {

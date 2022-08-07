@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHighlight } from "react-native";
-import { globalStyles } from '../styles/global'
+import { globalStyles } from '../../styles/global'
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -9,7 +9,7 @@ const numColumns = 5;
 const BLACK = 'black';
 const FEELING_LUCKY_BUTTON_COLOR = '#685269'
 const FEELING_LUCKY_BUTTON_BORDER_COLOR = '#ED44F5'
-const { data } = require("../mock/categoryData");
+const { data } = require("../../mock/categoryData");
 
 
 
@@ -23,7 +23,7 @@ const renderSquares = ({ item, index }) => {
         </TouchableHighlight>
     );
 };
-export default function Category() {
+export default function Activities() {
 
 
     return (
