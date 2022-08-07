@@ -33,7 +33,7 @@ export default function CustomCarousel() {
   // function will identify current slide visible on screen
   // Also maintaining current slide on Carousel swipe.
   const handleScrollEnd = (e) => {
-    console.log('handleScrollEnd')
+    //console.log('handleScrollEnd')
     if (!e) {
       return
     }
@@ -70,7 +70,7 @@ export default function CustomCarousel() {
 
 
   useEffect(() => {
-    console.log("currentSlide", currentSlide);
+    //console.log("currentSlide", currentSlide);
 
     const id = setInterval(() => goToNext(), 2000)
     return function () {

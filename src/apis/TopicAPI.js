@@ -1,18 +1,15 @@
 import axios from 'axios';
 
-let EXPRESS_URL = process.env['API_KEY'];
+let EXPRESS_URL = 'http://localhost:3000'
 export default {
-    createTopic: (bodyData, callback) => {
-        axios({
-            method: 'post',
-            url: EXPRESS_URL + `/topics`,
-            data: bodyData,
-        }).then(response => {
-            const topicData = response.data
-            callback(true, topicData)
-        })
+    tokenExample: (auctionId, token, callback) => {
+        axios.get(EXPRESS_URL + `/auctions/${auctionId}`, { headers: { "Authorization": `Bearer ${token}` } })
+            .then(response => {
+                const auction = response.data
+                callback(true, auction)
+            })
             .catch(error => {
-                callback(false, error && error.response && error.response.data ? error.response.data : error)
+                callback(false, error.message)
             })
     },
 
@@ -21,7 +18,7 @@ export default {
             method: 'get',
             url: EXPRESS_URL + `/topics`,
         }).then(response => {
-            const topicData = response.data.topics
+            const topicData = response.data
             callback(true, topicData)
         })
             .catch(error => {
@@ -35,7 +32,7 @@ export default {
             url: EXPRESS_URL + `/topics/${topicId}`,
         }).then(response => {
             console.log(response)
-            const topicData = response.data.topic
+            const topicData = response.data
             callback(true, topicData)
         })
             .catch(error => {

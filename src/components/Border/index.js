@@ -4,7 +4,7 @@ const SPLIT_BORDER_COLOR = 'black'
 
 export default function Border({ noMargin, color }) {
 
-    console.log(styles.splitBorder)
+    //console.log(styles.splitBorder)
     return (
         <View style={noMargin ? null : styles.splitBorderContainer}>
             <View style={color ? { ...styles.splitBorder, borderColor: color } : styles.splitBorder}>

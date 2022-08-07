@@ -1,23 +1,7 @@
 import axios from 'axios';
 
-let EXPRESS_URL = process.env['API_KEY'];
+let EXPRESS_URL = 'http://localhost:3000'
 export default{
-    createActivity: (topicId, categoryId, data, callback) => {
-        const header = {
-            headers: {
-                "Content-Type": 'multipart/form-data'
-            }
-        }
-        axios.post(EXPRESS_URL + `/topics/${topicId}/categories/${categoryId}/activities`, data, header)
-            .then(response => {
-                const activityResponse = response.data.newActivity
-                callback(true, activityResponse)
-            })
-            .catch(error => {
-                callback(false, error && error.response && error.response.data ? error.response.data : error);
-            })
-    },
-
     updateActivity: (topicId, categoryId, activityId, data, callback) => {
         const header = {
             headers: {
@@ -26,7 +10,7 @@ export default{
         }
         axios.put(EXPRESS_URL + `/topics/${topicId}/categories/${categoryId}/activities/${activityId}`, data, header)
             .then(response => {
-                const activityResponse = response.data.newActivity
+                const activityResponse = response.data
                 callback(true, activityResponse)
             })
             .catch(error => {
@@ -37,7 +21,7 @@ export default{
     getActivities: (topicId, categoryId, callback) => {
         axios.get(EXPRESS_URL + `/topics/${topicId}/categories/${categoryId}/activities`)
             .then(response => {
-                const activityData = response.data.activities
+                const activityData = response.data
                 callback(true, activityData)
             })
             .catch(error => {
