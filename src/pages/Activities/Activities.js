@@ -16,12 +16,21 @@ const { data } = require("../../mock/categoryData");
 
 
 
-function Activity({ activity}){
+function Activity({ activity, topicId, categoryId }){
     const navigation = useNavigation();
+
+    const revealedActivityClicked = () => {
+        navigation.navigate("RevealedActivity", {activity: activity})
+    }
+
+    const unrevealedActivityClicked = async () => {
+        await ActivityAPI.revealActivity(topicId, categoryId, activity._id)
+        navigation.navigate("RevealedActivity", {activity: activity})
+    }
 
     return (
         <TouchableHighlight
-            onPress={() => { activity.isRevealed ? navigation.navigate("RevealedActivity", {activity: activity}) : navigation.navigate("RevealedActivity", {activity: activity}) }}
+            onPress={async () => { activity.isRevealed ? revealedActivityClicked() : await unrevealedActivityClicked() }}
             underlayColor='#fff'
             style={styles.square}>
             {activity.isRevealed ?
@@ -38,6 +47,7 @@ function Activity({ activity}){
 export default function Activities({route}) {
     const {topicId, category} = route.params;
     const [activities, setActivities] = useState([]);
+    const [revealedCategoryCount, setRevealedCategoryCount] = useState(0);
     const isFocused = useIsFocused();
     //console.log(category)
 
@@ -52,6 +62,10 @@ export default function Activities({route}) {
     useEffect(() => {
         refreshData();
     }, [isFocused])
+
+    useEffect(() => {
+        setRevealedCategoryCount(activities.filter(activity => activity.isRevealed).length);
+    }, [activities])
 
     const getActivitiesCb = (isSuccess, activities) => {
         console.log(isSuccess)
@@ -69,22 +83,25 @@ export default function Activities({route}) {
                     {category.name}
                 </Text>
                 <Text style={styles.categoryProgressText}>
-                    5/10
+                    {`${revealedCategoryCount}/${activities.length}`}
                 </Text>
             </View>
             <FlatList style={styles.flatListContainer}
                 data={activities}
-                renderItem={(renderObj) => <Activity activity={renderObj.item}/>}
+                renderItem={(renderObj) => <Activity activity={renderObj.item} topicId={topicId} categoryId={category._id}/>}
                 numColumns={numColumns}
             />
-            <View style={styles.feelingLuckyContainer}>
-                <TouchableHighlight
-                    style={styles.feelingLuckyButton}
-                    onPress={() => { console.log('hi') }}
-                    underlayColor='#fff'>
-                    <Text style={styles.feelingLuckyText}>I am feeling lucky!</Text>
-                </TouchableHighlight>
-            </View>
+            {activities.length - revealedCategoryCount > 0 ?
+                <View style={styles.feelingLuckyContainer}>
+                    <TouchableHighlight
+                        style={styles.feelingLuckyButton}
+                        onPress={() => { console.log('hi') }}
+                        underlayColor='#fff'>
+                        <Text style={styles.feelingLuckyText}>I am feeling lucky!</Text>
+                    </TouchableHighlight>
+                </View> : <></>
+            }
+
         </View>
 
 

@@ -21,7 +21,8 @@ const Category = ({category, topicId}) => {
     console.log("category", category)
     return (
         <View>
-            <Pressable onPress={() => navigation.navigate('Activities', {topicId: topicId, category: category})}>
+            <Pressable onPress={() => navigation.navigate('Activities',{topicId: topicId, category: category}
+            )}>
                 <View style={styles.square}>
                     <Image
                         style={{height: SQUARE_SIDE_LENGTH, width: SQUARE_SIDE_LENGTH}}

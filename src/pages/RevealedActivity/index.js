@@ -12,7 +12,7 @@ export default function RevealedActivity({route}) {
     const {activity} = route.params;
     return (
         <View style={styles.mainContainer}>
-            <CategoryTitle containerStyle={styles.categoryTitleContainer} />
+            <CategoryTitle containerStyle={styles.categoryTitleContainer} activityName={activity.name} />
             <RevealedActivityPicture containerStyle={styles.revealedActivityContainer} activity={activity}/>
             <AchievementAcquired containerStyle={styles.achievementContainer} />
             <AdButton containerStyle={styles.adButtonContainer} />

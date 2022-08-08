@@ -4,14 +4,11 @@ const categoryTitle = 'Couple Home';
 const categoryProgress = '5 / 10';
 const CATEGORY_COLOR = "#fff"
 
-export default function CategoryTitle({ containerStyle }) {
+export default function CategoryTitle({ containerStyle, activityName }) {
     return (
         <View style={containerStyle}>
             <Text style={categoryTitleStyles.categoryTitleText}>
-                {categoryTitle}
-            </Text>
-            <Text style={categoryTitleStyles.categoryProgressText}>
-                {categoryProgress}
+                {activityName}
             </Text>
         </View>
     )

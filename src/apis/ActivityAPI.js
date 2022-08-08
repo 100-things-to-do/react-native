@@ -28,5 +28,10 @@ export default{
                 console.log(error)
                 callback(false, error && error.response && error.response.data ? error.response.data : error);
             })
+    },
+    revealActivity: async (topicId, categoryId, activityId) => {
+        console.log(topicId, categoryId, activityId);
+        const data = {'isRevealed': true}
+        return axios.put(EXPRESS_URL + `/topics/${topicId}/categories/${categoryId}/activities/${activityId}`, data);
     }
 }
