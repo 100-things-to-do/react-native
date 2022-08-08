@@ -31,7 +31,7 @@ export default {
             method: 'get',
             url: EXPRESS_URL + `/topics/${topicId}`,
         }).then(response => {
-            console.log(response)
+            //console.log(response)
             const topicData = response.data
             callback(true, topicData)
         })

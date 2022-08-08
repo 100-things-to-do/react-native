@@ -1,4 +1,4 @@
-export default movies = [
+export default [
     { url: 'https://image.tmdb.org/t/p/w1280/xBHvZcjRiWyobQ9kxBhO6B2dtRI.jpg' },
     { url: 'https://image.tmdb.org/t/p/w1280/z7FCF54Jvzv9Anxyf82QeqFXXOO.jpg' },
     { url: 'https://image.tmdb.org/t/p/w1280/3Nt3v1uzUgfSuVARD1AnI9g9Zl9.jpg' },

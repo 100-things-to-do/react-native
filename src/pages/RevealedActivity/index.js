@@ -8,11 +8,11 @@ import AdButton from './adButton';
 const CONTAINER_BG_COLOR = 'black';
 
 
-export default function RevealedCategory() {
+export default function RevealedActivity() {
     return (
         <View style={styles.mainContainer}>
             <CategoryTitle containerStyle={styles.categoryTitleContainer} />
-            <RevealedActivity containerStyle={styles.revealedActivityContainer} />
+            <RevealedActivityPicture containerStyle={styles.revealedActivityContainer} />
             <AchievementAcquired containerStyle={styles.achievementContainer} />
             <AdButton containerStyle={styles.adButtonContainer} />
         </View>

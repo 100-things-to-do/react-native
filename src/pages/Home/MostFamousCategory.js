@@ -8,7 +8,7 @@ export default function MostFamousCategory({ containerStyle }) {
     useEffect(() => {
         TopicAPI.getTopics((isSuccess, topics) => {
             if(isSuccess){
-                console.log(topics);
+                //console.log(topics);
             }else{
                 console.log("error", topics)
             }

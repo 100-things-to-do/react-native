@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, Pressable } from "react-native";
 import Border from '../../components/Border';
 import { globalStyles } from '../../styles/global'
 
@@ -9,59 +9,70 @@ const SQUARE_BORDER_COLOR = "red"
 const ACTIVITY_TEXT_COLOR = 'white'
 const numColumns = 2;
 const BACKGROUND_COLOR = "#7CA1B4"
-import categoryAPI from "../../apis/CategoryAPI";
-import useStable from "react-native-web/dist/modules/useStable";
-
-
+import topicAPI from "../../apis/TopicAPI";
 const { data } = require('../../mock/categoriesData')
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 
 
+const Category = ({category, topicId}) => {
+    const navigation = useNavigation();
 
-const renderActivity = ({ item: activity, index }) => {
+    console.log("category", category)
     return (
         <View>
-            <View style={styles.square}>
-                <Text style={styles.text}>{activity.name}</Text>
-            </View>
-            <Text style={styles.activityProgress}>{activity.progress}</Text>
+            <Pressable onPress={() => navigation.navigate('Activities', {topicId: topicId, category: category})}>
+                <View style={styles.square}>
+                    <Text style={styles.text}>{category.name}</Text>
+                </View>
+            </Pressable>
+            <Text style={styles.activityProgress}>1/10</Text>
 
         </View>
     )
 }
 
-const renderCategory = ({ item: category, index }) => {
+const renderCategory = ({ item: category, index }, topicId) => {
+    return (
+        <Category category={category} topicId={topicId}/>
+    )
+}
+
+
+
+const renderTopic = ({ item: topic, index }) => {
     return (
         <View style={styles.categoryContainer}>
             <Border />
-            <Text style={styles.categoryTitleText}>{category.name}</Text>
+            <Text style={styles.categoryTitleText}>{topic.name}</Text>
             <FlatList
-                data={category.activities}
-                renderItem={renderActivity}
+                topicId={topic._id}
+                data={topic.categories}
+                renderItem={(item) => renderCategory(item, topic._id)}
                 numColumns={numColumns}
             />
 
         </View>
     );
 };
-export default function Categories() {
-    const [categories, setCategories] = useState([]);
-    let topicId = '62712c20530b887f5b85ae29'
+export default function Topics() {
+    const [topics, setTopics] = useState([]);
 
-    const getCategoriesCb = (resultBoolean, categoriesResult) => {
-        if (resultBoolean) {
-            setCategories(categoriesResult);
+    const getTopicsCb = (isSuccess,topicsResult) => {
+        if (isSuccess) {
+            console.log("topics", topicsResult);
+            setTopics(topicsResult);
         }
     }
 
     useEffect(() => {
-        categoryAPI.getCategories(topicId, getCategoriesCb)
+        topicAPI.getTopics(getTopicsCb);
     }, [])
 
     return (
         <View style={globalStyles.mainContainer}>
             <FlatList style={styles.mainFlatListContainer}
-                data={categories}
-                renderItem={renderCategory}
+                data={topics}
+                renderItem={renderTopic}
             />
         </View>
     );

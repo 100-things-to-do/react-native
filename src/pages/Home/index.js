@@ -8,16 +8,6 @@ import { globalStyles } from '../../styles/global'
 const BannerWidth = Dimensions.get('window').width;
 
 
-
-
-
-
-
-
-
-
-
-
 export default function Home({ navigation }) {
     return (
         <View style={globalStyles.mainContainer}>

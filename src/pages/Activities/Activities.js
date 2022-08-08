@@ -1,6 +1,8 @@
-import React from "react";
-import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHighlight } from "react-native";
+import React, {useEffect, useState} from "react";
+import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHighlight, Image } from "react-native";
 import { globalStyles } from '../../styles/global'
+import ActivityAPI from "../../apis/ActivityAPI";
+import {useIsFocused} from "@react-navigation/native";
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -13,31 +15,62 @@ const { data } = require("../../mock/categoryData");
 
 
 
-const renderSquares = ({ item, index }) => {
+const renderSquares = ({ item: activity, index }) => {
     return (
         <TouchableHighlight
             onPress={() => { console.log('hi') }}
             underlayColor='#fff'
             style={styles.square}>
-            <Text>a</Text>
+            {activity.isRevealed ?
+                <Image
+                    style={{height: SQUARE_SIDE_LENGTH, width: SQUARE_SIDE_LENGTH}}
+                    source={{ uri: "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SY1000_CR0,0,666,1000_AL_.jpg"}}
+                    resizeMode="cover"
+                /> : <></>
+            }
+
         </TouchableHighlight>
     );
 };
-export default function Activities() {
+export default function Activities({route}) {
+    const {topicId, category} = route.params;
+    const [activities, setActivities] = useState([]);
+    const isFocused = useIsFocused();
+    //console.log(category)
 
+    const refreshData = () => {
+        ActivityAPI.getActivities(topicId, category._id, getActivitiesCb)
+    }
 
+    useEffect(() => {
+        refreshData();
+    }, [])
+
+    useEffect(() => {
+        refreshData();
+    }, [isFocused])
+
+    const getActivitiesCb = (isSuccess, activities) => {
+        console.log(isSuccess)
+        if(isSuccess){
+            console.log("activities", activities);
+            setActivities(activities)
+        }else{
+            console.log(activities);
+        }
+    }
     return (
         <View style={globalStyles.mainContainer}>
             <View style={styles.categorySummaryContainer}>
                 <Text style={styles.categoryTitleText}>
-                    Couple Home
+                    {category.name}
                 </Text>
                 <Text style={styles.categoryProgressText}>
                     5/10
                 </Text>
             </View>
             <FlatList style={styles.flatListContainer}
-                data={data}
+                data={activities}
                 renderItem={renderSquares}
                 numColumns={numColumns}
             />

@@ -2,7 +2,7 @@ import { StyleSheet, View } from "react-native";
 
 const REVEALED_ITEM_BG_COLOR = 'purple'
 
-export default function RevealedActivity({ containerStyle }) {
+export default function RevealedActivityPicture({ containerStyle }) {
     return (<View style={containerStyle}>
         <View style={revealedActivityStyles.square}>
         </View>

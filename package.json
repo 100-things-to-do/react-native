@@ -1,5 +1,5 @@
 {
-  "name": "oglet-mobile",
+  "name": "100things",
   "version": "1.0.0",
   "scripts": {
     "start": "expo start --dev-client",
@@ -10,11 +10,16 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^6.3.1",
+    "@react-navigation/drawer": "^6.4.3",
+    "@react-navigation/material-bottom-tabs": "^6.2.1",
+    "@react-navigation/material-top-tabs": "^6.2.1",
     "@react-navigation/native": "^6.0.11",
-    "@react-navigation/native-stack": "^6.5.0",
+    "@react-navigation/native-stack": "^6.6.1",
     "axios": "^0.27.2",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "expo": "~44.0.0",
+    "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.7",
     "react": "17.0.1",
@@ -25,17 +30,18 @@
     "react-native-gesture-handler": "~2.1.0",
     "react-native-material-menu": "^2.0.0",
     "react-native-navigation-drawer-extension": "^4.3.0",
-    "react-native-reanimated": "1.0.0",
+    "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4",
     "react-navigation-drawer": "^2.7.2",
-    "react-navigation-stack": "^2.10.4",
-    "expo-splash-screen": "~0.14.1"
+    "react-navigation-stack": "^2.10.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "babel-plugin-root-import": "^6.6.0",
+    "react-native-typescript-transformer": "^1.2.13"
   },
   "private": true
 }
