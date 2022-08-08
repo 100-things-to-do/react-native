@@ -5,6 +5,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Home from './src/pages/Home';
 const Drawer = createDrawerNavigator();
 import React, {Component} from 'react';
+import RevealedActivity from "./src/pages/RevealedActivity";
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
               <Drawer.Screen name={"Home"} component={Home}></Drawer.Screen>
               <Drawer.Screen name={"Topics"} component={Topics}></Drawer.Screen>
               <Drawer.Screen name={"Activities"} component={Activities}></Drawer.Screen>
+              <Drawer.Screen name={"RevealedActivity"} component={RevealedActivity}></Drawer.Screen>
           </Drawer.Navigator>
       </NavigationContainer>
   );

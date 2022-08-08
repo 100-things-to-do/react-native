@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHighlight, Image } from "react-native";
 import { globalStyles } from '../../styles/global'
 import ActivityAPI from "../../apis/ActivityAPI";
-import {useIsFocused} from "@react-navigation/native";
+import {useIsFocused, useNavigation} from "@react-navigation/native";
+import ASSET_URL from "../../../src/config";
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -15,16 +16,18 @@ const { data } = require("../../mock/categoryData");
 
 
 
-const renderSquares = ({ item: activity, index }) => {
+function Activity({ activity}){
+    const navigation = useNavigation();
+
     return (
         <TouchableHighlight
-            onPress={() => { console.log('hi') }}
+            onPress={() => { activity.isRevealed ? navigation.navigate("RevealedActivity", {activity: activity}) : navigation.navigate("RevealedActivity", {activity: activity}) }}
             underlayColor='#fff'
             style={styles.square}>
             {activity.isRevealed ?
                 <Image
                     style={{height: SQUARE_SIDE_LENGTH, width: SQUARE_SIDE_LENGTH}}
-                    source={{ uri: "https://m.media-amazon.com/images/M/MV5BYjFkMTlkYWUtZWFhNy00M2FmLThiOTYtYTRiYjVlZWYxNmJkXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SY1000_CR0,0,666,1000_AL_.jpg"}}
+                    source={{ uri: ASSET_URL + activity.image}}
                     resizeMode="cover"
                 /> : <></>
             }
@@ -71,7 +74,7 @@ export default function Activities({route}) {
             </View>
             <FlatList style={styles.flatListContainer}
                 data={activities}
-                renderItem={renderSquares}
+                renderItem={(renderObj) => <Activity activity={renderObj.item}/>}
                 numColumns={numColumns}
             />
             <View style={styles.feelingLuckyContainer}>

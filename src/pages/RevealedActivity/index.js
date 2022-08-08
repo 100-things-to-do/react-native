@@ -1,18 +1,19 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions, TouchableOpacity, Image } from "react-native";
 import CategoryTitle from './categoryTitle';
-import RevealedActivity from './revealedActivity';
 import AchievementAcquired from './achievementAcquired';
 import AdButton from './adButton';
+import RevealedActivityPicture from "./revealedActivityPicture";
 
 const CONTAINER_BG_COLOR = 'black';
 
 
-export default function RevealedActivity() {
+export default function RevealedActivity({route}) {
+    const {activity} = route.params;
     return (
         <View style={styles.mainContainer}>
             <CategoryTitle containerStyle={styles.categoryTitleContainer} />
-            <RevealedActivityPicture containerStyle={styles.revealedActivityContainer} />
+            <RevealedActivityPicture containerStyle={styles.revealedActivityContainer} activity={activity}/>
             <AchievementAcquired containerStyle={styles.achievementContainer} />
             <AdButton containerStyle={styles.adButtonContainer} />
         </View>

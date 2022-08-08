@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, Pressable } from "react-native";
+import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, Pressable, Image } from "react-native";
 import Border from '../../components/Border';
 import { globalStyles } from '../../styles/global'
 
@@ -12,6 +12,7 @@ const BACKGROUND_COLOR = "#7CA1B4"
 import topicAPI from "../../apis/TopicAPI";
 const { data } = require('../../mock/categoriesData')
 import { useNavigation, useIsFocused } from '@react-navigation/native';
+import ASSET_URL from "../../../src/config";
 
 
 const Category = ({category, topicId}) => {
@@ -22,7 +23,12 @@ const Category = ({category, topicId}) => {
         <View>
             <Pressable onPress={() => navigation.navigate('Activities', {topicId: topicId, category: category})}>
                 <View style={styles.square}>
-                    <Text style={styles.text}>{category.name}</Text>
+                    <Image
+                        style={{height: SQUARE_SIDE_LENGTH, width: SQUARE_SIDE_LENGTH}}
+                        source={{ uri: ASSET_URL + category.image}}
+                        resizeMode="cover"
+                    />
+
                 </View>
             </Pressable>
             <Text style={styles.activityProgress}>1/10</Text>
@@ -56,6 +62,15 @@ const renderTopic = ({ item: topic, index }) => {
 };
 export default function Topics() {
     const [topics, setTopics] = useState([]);
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        refreshTopics()
+    }, []);
+
+    useEffect(() => {
+
+    }, [isFocused]);
 
     const getTopicsCb = (isSuccess,topicsResult) => {
         if (isSuccess) {
@@ -64,9 +79,11 @@ export default function Topics() {
         }
     }
 
-    useEffect(() => {
+    const refreshTopics = () => {
         topicAPI.getTopics(getTopicsCb);
-    }, [])
+    }
+
+
 
     return (
         <View style={globalStyles.mainContainer}>
