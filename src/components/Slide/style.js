@@ -5,6 +5,12 @@ const styles = StyleSheet.create({
   slide: {
     flexDirection: 'row',
     width: screenWidth,
+    alignContent: "center"
+  },
+  temp: {
+    flex: 0.45,
+    height: 300,
+    width: 250
   },
   leftImageCard: {
     flex: 0.5,

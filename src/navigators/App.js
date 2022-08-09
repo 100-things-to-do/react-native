@@ -19,12 +19,7 @@ export default function App() {
               <Drawer.Screen
                   name={"Topics"}
                   component={TopicsNavigator}
-                  options={{
-                      drawerItemStyle: {
-                          display: "none",
-                      },
-                  }}
-
+                  options={{headerShown: false}}
               ></Drawer.Screen>
           </Drawer.Navigator>
       </NavigationContainer>

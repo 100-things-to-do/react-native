@@ -3,18 +3,33 @@ import { View, Text, ScrollView, TouchableOpacity, Dimensions, Platform } from '
 import styles from './style'
 import CarouselSlide from '../Slide'
 import movies from './data'
+import TopicAPI from "../../apis/TopicAPI";
 
 const { width: screenWidth } = Dimensions.get('window')
 const CARD_PER_SLIDE = 2;
 
 export default function CustomCarousel() {
-  const noOfSlides = Math.ceil(movies.length / CARD_PER_SLIDE)
+  const noOfSlides = Math.ceil(6 / CARD_PER_SLIDE)
   const [totalSlide, setTotalSlide] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isNext, setIsNext] = useState(false);
   const [isPrev, setIsPrev] = useState(false);
   const stepCarousel = useRef();
   const [refVisible, setRefVisible] = useState(false);
+  const [categories, setCategories] = useState([]);
+  //const [noOfSlides, setNoOfSlides] = useState(0);
+  useEffect(() => {
+    TopicAPI.getTopics((isSuccess, topics) => {
+      if(isSuccess){
+        setCategories(topics[0].categories);
+      }
+    })
+  },[])
+
+  useEffect(() => {
+
+  }, [categories])
+
 
 
   // function will find out total no of slide and set to state
@@ -110,7 +125,7 @@ export default function CustomCarousel() {
           const startIndex = i + 1
           const startPosition = ((startIndex + (startIndex - 1)) - 1)
           const endPosition = (startIndex * 2)
-          return <CarouselSlide key={i} cards={movies.slice(startPosition, endPosition)} />
+          return <CarouselSlide key={i} cards={categories.slice(startPosition, endPosition)} />
         })}
       </ScrollView>
     </View>
