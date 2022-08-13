@@ -6,22 +6,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from '../pages/Home';
 import React, {Component} from 'react';
 import RevealedActivity from "../pages/RevealedActivity";
-import TopicsNavigator from "./TopicsNavigator";
+import DrawerStack from "./DrawerStack";
 
-const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
       <NavigationContainer>
-          <Drawer.Navigator>
-              <Drawer.Screen name={"Home"} component={Home}></Drawer.Screen>
-              <Drawer.Screen
-                  name={"Topics"}
-                  component={TopicsNavigator}
-                  options={{headerShown: false}}
-              ></Drawer.Screen>
-          </Drawer.Navigator>
+          <Stack.Navigator>
+              <Stack.Screen name={"DrawerHome"} component={DrawerStack} options={{ headerShown: false, title: "Home" }}/>
+              <Stack.Screen name={"Popular Categories"} component={Topics} options={{headerBackTitle: "Back"}} />
+              <Stack.Screen name={"Activities"} component={Activities} options={{headerBackTitle: "Back"}}/>
+              <Stack.Screen name={"RevealedActivity"} component={RevealedActivity} options={{title: "", headerBackTitle: "Activities"}}/>
+          </Stack.Navigator>
       </NavigationContainer>
   );
 }

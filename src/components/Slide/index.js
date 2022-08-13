@@ -12,13 +12,13 @@ export default function CarouselSlide({ cards }) {
       {cards.map((card, index) => {
         if (index % 2 == 0) {
           return(
-          <Pressable key={index} onPress={() => navigation.navigate('Topics')} style={styles.temp}>
+          <Pressable key={index} onPress={() => navigation.navigate('Popular Categories')} style={styles.temp}>
           <Image source={{ uri: ASSET_URL + card.image }} style={styles.leftImageCard} key={index} />
           </Pressable>
           )
         } else {
           return(
-              <Pressable key={index} onPress={() => navigation.navigate('Topics')} style={styles.temp}>
+              <Pressable key={index} onPress={() => navigation.navigate('Popular Categories')} style={styles.temp}>
                 <Image source={{ uri: ASSET_URL + card.image }} style={styles.rightImageCard} key={index} />
               </Pressable>
           )
