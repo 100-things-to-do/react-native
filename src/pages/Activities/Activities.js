@@ -45,15 +45,12 @@ function Activity({ activity, topicId, categoryId }){
     );
 };
 export default function Activities({route}) {
+    const navigation = useNavigation();
     const {topicId, category} = route.params;
     const [activities, setActivities] = useState([]);
     const [revealedCategoryCount, setRevealedCategoryCount] = useState(0);
     const isFocused = useIsFocused();
     //console.log(category)
-
-    const refreshData = () => {
-        ActivityAPI.getActivities(topicId, category._id, getActivitiesCb)
-    }
 
     useEffect(() => {
         refreshData();
@@ -67,15 +64,31 @@ export default function Activities({route}) {
         setRevealedCategoryCount(activities.filter(activity => activity.isRevealed).length);
     }, [activities])
 
-    const getActivitiesCb = (isSuccess, activities) => {
-        console.log(isSuccess)
-        if(isSuccess){
-            console.log("activities", activities);
-            setActivities(activities)
-        }else{
-            console.log(activities);
-        }
+
+    const refreshData = () => {
+        ActivityAPI.getActivities(topicId, category._id, (isSuccess, activities) => {
+            console.log(isSuccess)
+            if(isSuccess){
+                console.log("activities", activities);
+                setActivities(activities)
+            }else{
+                console.log(activities);
+            }
+        })
     }
+
+    const getRandomUnrevealedActivity = () => {
+        const unrevealedActivities  = activities.filter(activity => !activity.isRevealed);
+        const randomIndex = Math.floor(Math.random() * unrevealedActivities.length);
+        return unrevealedActivities[randomIndex];
+    }
+
+    const revealRandomActivity = async () => {
+        const activity = getRandomUnrevealedActivity();
+        await ActivityAPI.revealActivity(topicId, category._id, activity._id);
+        navigation.navigate("RevealedActivity", {activity: activity})
+    }
+
     return (
         <View style={globalStyles.mainContainer}>
             <View style={styles.categorySummaryContainer}>
@@ -95,7 +108,7 @@ export default function Activities({route}) {
                 <View style={styles.feelingLuckyContainer}>
                     <TouchableHighlight
                         style={styles.feelingLuckyButton}
-                        onPress={() => { console.log('hi') }}
+                        onPress={() => revealRandomActivity()}
                         underlayColor='#fff'>
                         <Text style={styles.feelingLuckyText}>I am feeling lucky!</Text>
                     </TouchableHighlight>

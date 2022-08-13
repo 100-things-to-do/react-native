@@ -33,5 +33,5 @@ export default{
         console.log(topicId, categoryId, activityId);
         const data = {'isRevealed': true}
         return axios.put(EXPRESS_URL + `/topics/${topicId}/categories/${categoryId}/activities/${activityId}`, data);
-    }
+    },
 }
