@@ -1,16 +1,18 @@
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
-
+import { StyleSheet, Text, View, Image, Dimensions, ImageBackground} from 'react-native';
+import {LinearGradient} from 'expo-linear-gradient';
 const APP_IMAGE = "https://reactjs.org/logo-og.png";
-
+import MaskedView from '@react-native-community/masked-view';
 
 export default function HomeHeader({ containerStyle }) {
     return (
         <View style={containerStyle}>
             <View style={styles.headerImageContainer}>
-                <Image
-                    source={{ uri: APP_IMAGE }}
-                    style={styles.image}
-                />
+                    <MaskedView
+                        style={{ flex: 1 }}
+                        maskElement={<LinearGradient style={{ flex: 1 }} colors={['white', 'transparent']} />}
+                    >
+                        <ImageBackground style={styles.image} source={{ uri: APP_IMAGE }} />
+                    </MaskedView>
             </View>
             <View style={styles.headerTextContainer}>
                 <Text style={styles.centeredText}>

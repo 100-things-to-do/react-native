@@ -20,7 +20,6 @@ export default function Home({ navigation }) {
             <PopularChallenges containerStyle={styles.popularChallengesContainer} />
 
         </View>
-
     )
 }
 
