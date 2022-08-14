@@ -3,7 +3,8 @@ import { StyleSheet, View, Text, FlatList, ScrollView, Dimensions, TouchableHigh
 import { globalStyles } from '../../styles/global'
 import ActivityAPI from "../../apis/ActivityAPI";
 import {useIsFocused, useNavigation} from "@react-navigation/native";
-import ASSET_URL from "../../../src/config";
+import {ASSET_URL} from "../../../src/config";
+import {useTranslation} from "react-i18next";
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -45,6 +46,7 @@ function Activity({ activity, topicId, categoryId }){
     );
 };
 export default function Activities({route}) {
+    const {t, i18n} = useTranslation();
     const navigation = useNavigation();
     const {topicId, category} = route.params;
     const [activities, setActivities] = useState([]);
@@ -110,7 +112,7 @@ export default function Activities({route}) {
                         style={styles.feelingLuckyButton}
                         onPress={() => revealRandomActivity()}
                         underlayColor='#fff'>
-                        <Text style={styles.feelingLuckyText}>I am feeling lucky!</Text>
+                        <Text style={styles.feelingLuckyText}>{t('iAmFeelingLucky')}</Text>
                     </TouchableHighlight>
                 </View> : <></>
             }

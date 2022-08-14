@@ -12,7 +12,7 @@ const BACKGROUND_COLOR = "#7CA1B4"
 import topicAPI from "../../apis/TopicAPI";
 const { data } = require('../../mock/categoriesData')
 import { useNavigation, useIsFocused } from '@react-navigation/native';
-import ASSET_URL from "../../../src/config";
+import {ASSET_URL} from "../../../src/config";
 
 
 const Category = ({category, topicId}) => {

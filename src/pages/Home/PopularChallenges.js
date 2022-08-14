@@ -3,13 +3,11 @@ import Border from '../../components/Border'
 import Carousel from '../../components/Carousel'
 import {useTranslation} from "react-i18next";
 
-const POPULAR_CHALLENGES_TEXT = 'Popular Challenges'
-
 export default function PopularChallenges({ containerStyle }) {
     const {t, i18n} = useTranslation();
     return (
         <View style={containerStyle}>
-            <Text style={styles.popularChallangesText}>
+            <Text style={styles.popularChallengesText}>
                 {t('popularCategories')}
             </Text>
             <View style={styles.carouselContainer}>
@@ -30,7 +28,7 @@ const styles = StyleSheet.create({
     carouselContainer: {
         flex: 0.8,
     },
-    popularChallangesText: {
+    popularChallengesText: {
         marginLeft: '10%',
         marginTop: '2.5%',
         marginBottom: '1%',

@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View, Animated, Button, Image, ScrollView } from 'react-native';
-const profileName = "Devrim D.";
-const memoryCountText = "Have 13 good memories!";
-
-const profileImage = "https://reactjs.org/logo-og.png";
+import {useTranslation} from "react-i18next";
+const profileName = "Devrim D."; //TODO
+const profileImage = "https://reactjs.org/logo-og.png"; //TODO
 
 
 export default function ProfileHeader({ containerStyle }) {
+    const {t, i18n} = useTranslation();
+
     return (
         <View style={containerStyle}>
             <View style={styles.topImageContainer}>
@@ -15,7 +16,7 @@ export default function ProfileHeader({ containerStyle }) {
             </View>
             <View style={styles.profileTextContainer}>
                 <Text style={styles.profileNameText}>{profileName}</Text>
-                <Text style={styles.memoryCountText}>{memoryCountText}</Text>
+                <Text style={styles.memoryCountText}>{t('memoryCountText')}</Text>
 
             </View>
         </View>

@@ -2,8 +2,11 @@ import { StyleSheet, Text, View, Image, Dimensions, ImageBackground} from 'react
 import {LinearGradient} from 'expo-linear-gradient';
 const APP_IMAGE = "https://reactjs.org/logo-og.png";
 import MaskedView from '@react-native-community/masked-view';
+import {APP_NAME} from "../../config";
+import {useTranslation} from "react-i18next";
 
 export default function HomeHeader({ containerStyle }) {
+    const {t, i18n} = useTranslation();
     return (
         <View style={containerStyle}>
             <View style={styles.headerImageContainer}>
@@ -16,10 +19,10 @@ export default function HomeHeader({ containerStyle }) {
             </View>
             <View style={styles.headerTextContainer}>
                 <Text style={styles.centeredText}>
-                    Challange yourself with
+                    {t('challengeYourselfWith')}
                 </Text>
                 <Text style={styles.appNameText}>
-                    Activify
+                    {APP_NAME}
                 </Text>
 
             </View>

@@ -1,11 +1,13 @@
 import { StyleSheet, View, Text, Image } from "react-native";
+import {useTranslation} from "react-i18next";
 
 const { achievementData } = require('../../mock/achievementData');
-const achievementAcquiredText = 'Achievement Acquired!'
 
 export default function AchievementAcquired({ containerStyle }) {
+    const {t, i18n} = useTranslation();
+
     return (<View style={containerStyle}>
-        <Text style={achievementStyles.achievementText}>{achievementAcquiredText}</Text>
+        <Text style={achievementStyles.achievementText}>{t('achievementAcquired')}</Text>
         <Image source={{
             uri: achievementData.imgUrl
         }} style={achievementStyles.achievementImage} />

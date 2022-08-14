@@ -1,5 +1,5 @@
 import {Image, StyleSheet, View} from "react-native";
-import ASSET_URL from "../../../src/config";
+import {ASSET_URL} from "../../../src/config";
 
 const REVEALED_ITEM_BG_COLOR = 'purple'
 

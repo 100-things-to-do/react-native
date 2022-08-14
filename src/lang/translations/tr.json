@@ -1,5 +1,16 @@
 {
-    "translation":{
-        "popularCategories": "Popüler Kategoriler"
+    "translation": {
+        "home": "Ana Menü",
+        "activities": "Aktiviteler",
+        "topics": "Konular",
+        "profile": "Profil",
+        "popularCategories": "Popüler Kategoriler",
+        "challengeYourselfWith": "Kendine meydan oku!",
+        "iAmFeelingLucky": "Kendimi şanslı hissediyorum!",
+        "achievements": "Kazanılan Başarılar",
+        "favoriteListText": "Favori Listen",
+        "memoryCountText": "13 adet hatıran var!",
+        "newAdventureButton": "Yeni bir macera için tıkla!",
+        "achievementAcquired": "Yeni başarı kazanıldı!"
     }
 }

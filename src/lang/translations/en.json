@@ -1,5 +1,16 @@
 {
     "translation":{
-        "popularCategories": "Popular Categories"
+        "home": "Home",
+        "activities": "Activities",
+        "topics": "Topics",
+        "profile": "Profile",
+        "popularCategories": "Popular Categories",
+        "challengeYourselfWith": "Challenge yourself with",
+        "iAmFeelingLucky": "I am feeling lucky!",
+        "achievements": "Achievements",
+        "favoriteListText": "Your Favorite List",
+        "memoryCountText": "Have 13 good memories!",
+        "newAdventureButton": "Click for a new adventure!",
+        "achievementAcquired": "Achievement Acquired!"
     }
 }

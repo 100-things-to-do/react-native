@@ -3,11 +3,10 @@ import Border from '../../components/Border'
 import Achievements from './Achievements';
 import ProfileHeader from './ProfileHeader';
 import FavoriteList from './FavoriteList';
-const FAVORITE_LIST_TEXT = 'Your Favorite List'
+import {useTranslation} from "react-i18next";
 
 export default function Profile({ navigation }) {
-
-
+    const {t, i18n} = useTranslation();
     return (
         <View style={{ flex: 1, backgroundColor: '#1C658C' }}>
             <View style={styles.pageContainer}>
@@ -16,7 +15,7 @@ export default function Profile({ navigation }) {
                 <Achievements containerStyle={styles.achievementsContainer} />
                 <Border noMargin color={'white'} />
                 <Text style={styles.favoriteListText}>
-                    {FAVORITE_LIST_TEXT}
+                    {t('favoriteListText')}
                 </Text>
             </View>
             <FavoriteList containerStyle={styles.favoriteListContainer} />

@@ -1,11 +1,12 @@
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import {useTranslation} from "react-i18next";
 
 const AD_BUTTON_COLOR = '#685269'
 const AD_BUTTON_BORDER_COLOR = '#ED44F5';
 const CURTAIN_JPEG = require('../../../assets/video2-white.png')
-const buttonText = 'Yeni bir macera için tıkla';
 
 export default function AdButton({ containerStyle }) {
+    const {t, i18n} = useTranslation();
     return (
         <View style={containerStyle}>
             <TouchableOpacity style={adButtonStyles.adButton} activeOpacity={0.5}>
@@ -13,7 +14,7 @@ export default function AdButton({ containerStyle }) {
                     source={CURTAIN_JPEG}
                     style={adButtonStyles.adButtonImage}
                 />
-                <Text style={adButtonStyles.adButtonTextStyle}>{buttonText}</Text>
+                <Text style={adButtonStyles.adButtonTextStyle}>{t('newAdventureButton')}</Text>
             </TouchableOpacity>
         </View>
     )

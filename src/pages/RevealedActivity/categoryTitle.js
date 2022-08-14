@@ -1,7 +1,4 @@
 import { StyleSheet, View, Text } from "react-native";
-
-const categoryTitle = 'Couple Home';
-const categoryProgress = '5 / 10';
 const CATEGORY_COLOR = "#fff"
 
 export default function CategoryTitle({ containerStyle, activityName }) {

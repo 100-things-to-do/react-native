@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View, Animated, Button, Image, ScrollView } from 'react-native';
+import {useTranslation} from "react-i18next";
 const CURTAIN_JPEG = require('../../../assets/video2-white.png')
 
 
 export default function Achievements({ containerStyle }) {
+    const {t, i18n} = useTranslation();
     return (
         <View style={containerStyle}>
             <View style={styles.achievementsTextContainer}>
                 <Text style={styles.achievementsText}>
-                    Achievements
+                    {t('achievements')}
                 </Text>
             </View>
             <ScrollView
