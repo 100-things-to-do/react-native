@@ -12,7 +12,7 @@ import {useTranslation} from "react-i18next";
 import * as SecureStore from 'expo-secure-store';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
-
+import UserAPI from '../apis/UserAPI'
 
 const Stack = createNativeStackNavigator();
 
@@ -26,8 +26,9 @@ export default function App() {
         if (fetchUUID) {
             uuid = fetchUUID
         }
-        await SecureStore.setItemAsync('secure_deviceid', JSON.stringify(uuid));
+        await SecureStore.setItemAsync('secure_deviceid', uuid);
         alert(uuid)
+        await UserAPI.login(uuid);
     }, [])
 
     return (

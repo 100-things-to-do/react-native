@@ -5,6 +5,7 @@ import ActivityAPI from "../../apis/ActivityAPI";
 import {useIsFocused, useNavigation} from "@react-navigation/native";
 import {ASSET_URL} from "../../../src/config";
 import {useTranslation} from "react-i18next";
+import * as SecureStore from "expo-secure-store";
 
 const SQUARE_MARGIN = Dimensions.get('window').width / 200
 const SQUARE_SIDE_LENGTH = 4 * Dimensions.get('window').width / 23
@@ -25,9 +26,12 @@ function Activity({ activity, topicId, categoryId }){
     }
 
     const unrevealedActivityClicked = async () => {
-        await ActivityAPI.revealActivity(topicId, categoryId, activity._id)
+        let deviceId = await SecureStore.getItemAsync('secure_deviceid');
+        await ActivityAPI.revealActivity(deviceId, topicId, categoryId, activity._id)
         navigation.navigate("RevealedActivity", {activity: activity})
     }
+
+
 
     return (
         <TouchableHighlight
@@ -54,12 +58,12 @@ export default function Activities({route}) {
     const isFocused = useIsFocused();
     //console.log(category)
 
-    useEffect(() => {
-        refreshData();
+    useEffect(async () => {
+        await refreshData();
     }, [])
 
-    useEffect(() => {
-        refreshData();
+    useEffect(async () => {
+        await refreshData();
     }, [isFocused])
 
     useEffect(() => {
@@ -67,11 +71,10 @@ export default function Activities({route}) {
     }, [activities])
 
 
-    const refreshData = () => {
-        ActivityAPI.getActivities(topicId, category._id, (isSuccess, activities) => {
-            console.log(isSuccess)
+    const refreshData = async () => {
+        let deviceId = await SecureStore.getItemAsync('secure_deviceid');
+        ActivityAPI.getActivities(deviceId, topicId, category._id, (isSuccess, activities) => {
             if(isSuccess){
-                console.log("activities", activities);
                 setActivities(activities)
             }else{
                 console.log(activities);
@@ -86,8 +89,9 @@ export default function Activities({route}) {
     }
 
     const revealRandomActivity = async () => {
+        let deviceId = await SecureStore.getItemAsync('secure_deviceid');
         const activity = getRandomUnrevealedActivity();
-        await ActivityAPI.revealActivity(topicId, category._id, activity._id);
+        await ActivityAPI.revealActivity(deviceId, topicId, category._id, activity._id);
         navigation.navigate("RevealedActivity", {activity: activity})
     }
 
